@@ -7,6 +7,7 @@ class CustomButton extends StatelessWidget {
   final Color? color;
   final double width;
   final double height;
+  final double fontSize;
   final BorderRadius? borderRadius;
 
   const CustomButton({
@@ -15,6 +16,7 @@ class CustomButton extends StatelessWidget {
     this.label = '',
     this.width = 130,
     this.height = 50,
+    this.fontSize = 18,
     this.backgroundColor = Colors.blue,
     this.color = Colors.white,
     this.borderRadius,
@@ -34,7 +36,7 @@ class CustomButton extends StatelessWidget {
         child: Text(label,
             style: TextStyle(
               color: color,
-              fontSize: 18,
+              fontSize: fontSize,
             )));
   }
 }
