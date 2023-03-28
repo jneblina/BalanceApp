@@ -37,17 +37,21 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
   }
 
   _numPad() {
-    if (importe == '0.00') importe = '';
-    _num(
-      String _text,
-      double _height,
-    ) {
+    RegExp regex = RegExp(r'^(?!0\d)\d{0,9}(.\d{0,2})?$');
+
+    _num(String _text, double _height) {
       return GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
           setState(() {
             if (importe == '0.00') importe = '';
-            importe += _text;
+            if (importe.contains(".") && _text == ".") {
+              return;
+            }
+            String newImporte = importe + _text;
+            if (regex.hasMatch(newImporte)) {
+              importe = newImporte;
+            }
           });
         },
         child: SizedBox(
@@ -83,11 +87,7 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Table(
-                    border: TableBorder.symmetric(
-                        inside: const BorderSide(
-                      color: Colors.white,
-                      width: 2.5,
-                    )),
+                    border: TableBorder.symmetric(inside: const BorderSide()),
                     children: [
                       TableRow(children: [
                         _num('1', _height),
