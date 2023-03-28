@@ -48,6 +48,9 @@ class _BSNumKeyboardState extends State<BSNumKeyboard> {
             if (importe.contains(".") && _text == ".") {
               return;
             }
+            if (importe == '.') {
+              importe = '0.';
+            }
             String newImporte = importe + _text;
             if (regex.hasMatch(newImporte)) {
               importe = newImporte;
